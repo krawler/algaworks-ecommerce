@@ -1,0 +1,1 @@
+insert into produto(descricao,nome,preco) values('cabo de aço padrão','cabo de aço padrão',25.00) 
