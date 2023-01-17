@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.jpa;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
@@ -38,6 +39,22 @@ public class OperacoesComTransactionTest extends EntityManagerAbstract {
 		
 		Produto productVerify = manager.find(Produto.class, produto.getId());
 		assertNotNull(productVerify);
+	}
+
+	@Test
+	public void impedirOperacaoComBancoDeDados() {
+		Produto produto = manager.find(Produto.class, 1);
+		manager.detach(produto);
+
+		manager.getTransaction().begin();		
+		produto.setNome("cabo de aço padrão alterado");
+		manager.merge(produto);
+		manager.getTransaction().commit();
+		
+		manager.clear();
+		
+		Produto productVerify = manager.find(Produto.class, produto.getId());
+		assertEquals("cabo de aço padrão alterado", productVerify.getNome());
 	}
 
 }
