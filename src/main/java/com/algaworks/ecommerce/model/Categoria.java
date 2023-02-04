@@ -1,11 +1,7 @@
 package com.algaworks.ecommerce.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,23 +11,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode
 @Entity
-@Table(name = "produto")
-public class Produto {
+@Table(name = "categoria")
+public class Categoria {
 	
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column
 	private String nome;
 	
-	@Column
-	private String descricao;
-	
-	@Column
-	private BigDecimal preco;
-	
+	@Column(name = "categoria_pai_id")
+	private Integer categoriaPaiId;
 }
