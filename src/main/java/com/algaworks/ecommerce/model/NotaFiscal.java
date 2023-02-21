@@ -22,7 +22,7 @@ public class NotaFiscal {
 	@Id
 	private Integer id;
 	
-	@Column(name = "pedido_id")
+	@Column(name = "id_pedido")
 	private Integer pedidoId;
 
 	private String xml;
