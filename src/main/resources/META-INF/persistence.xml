@@ -9,7 +9,7 @@
      <properties>
        <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/algamoney_ecommerce?createDatabaseIfNotExist=true&amp;useTimeZone=true&amp;serverTimeZone=UTC"/>
        <property name="javax.persistence.jdbc.user" value="postgres"/>
-       <property name="javax.persistence.jdbc.password" value="4g5b"/>
+       <property name="javax.persistence.jdbc.password" value="pass1234"/>
        <property name="javax.persistence.jdbc.Driver" value="org.postgresql.Driver" />
        
        <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

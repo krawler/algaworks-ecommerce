@@ -12,6 +12,7 @@ public class MapeandoEnumeracoesTest extends EntityManagerAbstract {
 	
 	@Test
 	public void testEnum() {
+		
 		Cliente cliente = new Cliente();
 		cliente.setNome("Rafael");
 		cliente.setSexoCliente(SexoCliente.MASCULINMO);
