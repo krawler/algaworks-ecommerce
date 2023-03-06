@@ -5,11 +5,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,13 +24,14 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Table(name="pedido")
 public class Pedido {
 	
 	@EqualsAndHashCode.Include
 	@Id
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
@@ -35,8 +41,17 @@ public class Pedido {
 	@Column(name = "data_conclusao")
 	private LocalDateTime dataConclusao;
 	
-	@Column(name = "id_notafiscal")
-	private Integer notaFiscalId;
+	@Column(name = "data_pagamento")
+	private LocalDateTime dataPagamento;
+	
+	@Column(name = "data_ultima_atualizacao")
+	private LocalDateTime dataUltimaAtualizacao;
+	
+	@Column(name = "pagamento")
+	private PagamentoCartao pagamento;
+	
+	@OneToOne(mappedBy = "pedido")
+	private NotaFiscal notaFiscal;
 	
 	private BigDecimal total;
 	
@@ -44,5 +59,18 @@ public class Pedido {
 	
 	@OneToMany
 	private List<ItemPedido> items;
+	
+	@Embedded
+	private EnderecoEntregaPedido enderecoEntrega;
+	
+	@PrePersist
+	public void atPersist() {
+		dataPedido = LocalDateTime.now();
+	}
+	
+	@PreUpdate
+	public void atUpdate() {
+		dataUltimaAtualizacao = LocalDateTime.now();
+	}
 
 }

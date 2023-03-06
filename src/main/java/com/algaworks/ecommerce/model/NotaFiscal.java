@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -22,8 +24,9 @@ public class NotaFiscal {
 	@Id
 	private Integer id;
 	
-	@Column(name = "id_pedido")
-	private Integer pedidoId;
+	@OneToOne(optional = false, targetEntity = Pedido.class)
+	@JoinColumn(name = "id_pedido")
+	private Pedido pedido;
 
 	private String xml;
 	

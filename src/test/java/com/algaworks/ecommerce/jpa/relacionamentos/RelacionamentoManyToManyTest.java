@@ -28,10 +28,10 @@ public class RelacionamentoManyToManyTest extends EntityManagerAbstract {
 	    
 	    this.manager.clear();
 	    
-	    Categoria categoriaVerify = this.manager.find(Categoria.class, categoria);
+	    Categoria categoriaVerify = this.manager.find(Categoria.class, categoria.getId());
 	    assertFalse(categoriaVerify.getProdutos().isEmpty());
 	    
-	    Produto produtoVerify = this.manager.find(Produto.class, produto);
+	    Produto produtoVerify = this.manager.find(Produto.class, produto.getId());
 	    assertFalse(produtoVerify.getCategorias().isEmpty());
 	    
 	}
