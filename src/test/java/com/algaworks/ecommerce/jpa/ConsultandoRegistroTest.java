@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
 
 public class ConsultandoRegistroTest extends EntityManagerAbstract {
@@ -12,6 +13,8 @@ public class ConsultandoRegistroTest extends EntityManagerAbstract {
 	@Test
 	public void buscarPorId() {
 		Produto produto  = manager.find(Produto.class, 1);
+		
+		Pedido pedido = manager.find(Pedido.class, 1);
 		
 		assertNotNull("produto não encontrado", produto);
 		assertEquals(1L, produto.getId().longValue());

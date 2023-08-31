@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -47,17 +48,19 @@ public class Pedido {
 	@Column(name = "data_ultima_atualizacao")
 	private LocalDateTime dataUltimaAtualizacao;
 	
-	@Column(name = "pagamento")
+	//@Column(name = "pagamento")
+	@ManyToOne
 	private PagamentoCartao pagamento;
 	
-	@OneToOne(mappedBy = "pedido")
-	private NotaFiscal notaFiscal;
+	@Column(name = "nota-fiscal")
+	@OneToMany(mappedBy = "pedido")
+	private List<NotaFiscal> notasFiscais;
 	
 	private BigDecimal total;
 	
 	private StatusPedido status;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> items;
 	
 	@Embedded
