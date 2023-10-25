@@ -2,16 +2,12 @@ package com.algaworks.ecommerce.mapeamentoavancado;
 
 import java.util.Arrays;
 
-import javax.naming.ldap.ManageReferralControl;
-
-import org.junit.Test;
-
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Atributo;
 import com.algaworks.ecommerce.model.Produto;
+import org.junit.jupiter.api.Test;
 
-import junit.framework.Assert;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ElementCollectionTest extends EntityManagerAbstract {
 
@@ -26,7 +22,7 @@ public class ElementCollectionTest extends EntityManagerAbstract {
 		manager.clear();
 		
 		Produto produtoVerify = manager.find(Produto.class, produto.getId());
-		Assert.assertFalse(produtoVerify.getTags().isEmpty());
+		assertFalse(produtoVerify.getTags().isEmpty());
 	}
 	
 	@Test
@@ -40,6 +36,6 @@ public class ElementCollectionTest extends EntityManagerAbstract {
 		manager.clear();
 		
 		Produto produtoVerify = manager.find(Produto.class, produto.getId());
-		Assert.assertFalse(produtoVerify.getAtributos().isEmpty());
+		assertFalse(produtoVerify.getAtributos().isEmpty());
 	}
 }

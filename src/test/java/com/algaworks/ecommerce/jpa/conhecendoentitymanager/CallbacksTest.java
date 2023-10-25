@@ -1,12 +1,13 @@
 package com.algaworks.ecommerce.jpa.conhecendoentitymanager;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.StatusPedido;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CallbacksTest extends EntityManagerAbstract {
 	
@@ -28,7 +29,8 @@ public class CallbacksTest extends EntityManagerAbstract {
 		this.manager.clear();
 		
 		Pedido pedidoVerify = this.manager.find(Pedido.class, pedido.getId());
-		Assert.assertNotNull(pedidoVerify.getDataPedido());
-		Assert.assertNotNull(pedidoVerify.getDataUltimaAtualizacao());
+
+		assertNotNull(pedidoVerify.getDataPedido());
+		assertNotNull(pedidoVerify.getDataUltimaAtualizacao());
 	}
 }

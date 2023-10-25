@@ -5,17 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +31,9 @@ public class Produto implements Serializable {
 	
 	@Column
 	private BigDecimal preco;
+
+	@Lob
+	private byte[] foto;
 	
 	@Column(name = "data_criacao", updatable = false)
 	private LocalDateTime dataCriacao;
@@ -49,17 +43,27 @@ public class Produto implements Serializable {
 	
 	@ManyToMany
 	@JoinTable(name = "produto_categoria", 
-			   joinColumns = @JoinColumn(name="produto_id"), 
-			   inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+			   joinColumns = @JoinColumn(name="produto_id", nullable = false,
+			   							 foreignKey = @ForeignKey(name = "fk_produto_categoria_produto")),
+			   inverseJoinColumns = @JoinColumn(name = "categoria_id", nullable = false,
+			   									foreignKey = @ForeignKey(name = "fk_produto_categoria_categoria")))
 	private List<Categoria> categorias;
+
+
+	@ManyToOne(targetEntity = Estoque.class)
+	private Estoque estoque;
 	
 	@ElementCollection
-	@CollectionTable(name = "produto_tag", joinColumns = @JoinColumn(name = "produto_id"))
+	@CollectionTable(name = "produto_tag",
+			     	 joinColumns = @JoinColumn(name = "produto_id", nullable = false,
+					 						   foreignKey = @ForeignKey(name = "fk_produto_tag_produto")))
 	@Column(name = "tag")
 	private List<String> tags;
 	
 	@ElementCollection
-	@CollectionTable(name = "produto_atributo", joinColumns = @JoinColumn(name = "produto_id"))
+	@CollectionTable(name = "produto_atributo",
+					 joinColumns = @JoinColumn(name = "produto_id", nullable = false,
+											   foreignKey = @ForeignKey(name = "fk_produto_atributo_produto")))
 	private List<Atributo> atributos;
 
 }

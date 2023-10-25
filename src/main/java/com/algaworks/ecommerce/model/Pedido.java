@@ -4,18 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,8 +22,12 @@ public class Pedido {
 	private Integer id;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "id_cliente")
+	@JoinColumn(name = "id_cliente", nullable = false,
+			    foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
 	private Cliente cliente;
+
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemPedido> items;
 	
 	@Column(name = "data_pedido")
 	private LocalDateTime dataPedido;
@@ -47,10 +40,10 @@ public class Pedido {
 	
 	@Column(name = "data_ultima_atualizacao")
 	private LocalDateTime dataUltimaAtualizacao;
-	
-	//@Column(name = "pagamento")
-	@ManyToOne
-	private PagamentoCartao pagamento;
+
+	@Column(name = "pagamento_cartao")
+	@OneToMany(mappedBy = "pedido")
+	private List<PagamentoCartao> pagamentoCartao;
 	
 	@Column(name = "nota-fiscal")
 	@OneToMany(mappedBy = "pedido")
@@ -59,9 +52,6 @@ public class Pedido {
 	private BigDecimal total;
 	
 	private StatusPedido status;
-	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<ItemPedido> items;
 	
 	@Embedded
 	private EnderecoEntregaPedido enderecoEntrega;

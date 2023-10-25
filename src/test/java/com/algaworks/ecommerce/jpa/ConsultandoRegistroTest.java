@@ -1,12 +1,11 @@
 package com.algaworks.ecommerce.jpa;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
-
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ConsultandoRegistroTest extends EntityManagerAbstract {
 		
@@ -16,7 +15,7 @@ public class ConsultandoRegistroTest extends EntityManagerAbstract {
 		
 		Pedido pedido = manager.find(Pedido.class, 1);
 		
-		assertNotNull("produto não encontrado", produto);
+		assertEquals("produto não encontrado", produto);
 		assertEquals(1L, produto.getId().longValue());
 	}
 

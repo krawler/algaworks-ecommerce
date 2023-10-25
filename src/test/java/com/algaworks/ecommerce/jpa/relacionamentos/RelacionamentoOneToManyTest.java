@@ -3,15 +3,15 @@ package com.algaworks.ecommerce.jpa.relacionamentos;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.ItemPedido;
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
 import com.algaworks.ecommerce.model.StatusPedido;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RelacionamentoOneToManyTest extends EntityManagerAbstract {
 	
@@ -40,7 +40,7 @@ public class RelacionamentoOneToManyTest extends EntityManagerAbstract {
 	    this.manager.clear();
 	    
 	    Pedido pedidoVerify = this.manager.find(Pedido.class, pedido.getId());
-	    Assert.assertFalse(pedidoVerify.getItems().isEmpty());
+	    assertFalse(pedidoVerify.getItems().isEmpty());
 	}
 
 }

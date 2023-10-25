@@ -1,9 +1,9 @@
 package com.algaworks.ecommerce.jpa.conhecendoentitymanager;
 
-import org.junit.Test;
-
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Produto;
+
+import org.junit.jupiter.api.Test;
 
 public class CachePrimeiroNivelTest extends EntityManagerAbstract {
 

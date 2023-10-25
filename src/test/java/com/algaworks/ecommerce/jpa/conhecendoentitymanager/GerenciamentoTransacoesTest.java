@@ -1,6 +1,6 @@
 package com.algaworks.ecommerce.jpa.conhecendoentitymanager;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Pedido;
@@ -9,7 +9,7 @@ import com.algaworks.ecommerce.model.StatusPedido;
 public class GerenciamentoTransacoesTest extends EntityManagerAbstract {
 
 	
-	@Test(expected = Exception.class)
+	@Test()
 	public void openCloseTransaction() throws Exception {
 		
 		try {

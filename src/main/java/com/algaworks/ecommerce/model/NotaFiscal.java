@@ -2,14 +2,7 @@ package com.algaworks.ecommerce.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,11 +21,13 @@ public class NotaFiscal {
 	private Integer id;
 	
 	@ManyToOne(optional = false, targetEntity = Pedido.class)
-	@JoinColumn(name = "id_pedido")
+	@JoinColumn(name = "id_pedido", nullable = false,
+								foreignKey = @ForeignKey(name = "fk_nota_fiscal_pedido_nota_fiscal"))
 	private Pedido pedido;
 
+	@Column(name = "xml", nullable = false)
 	private String xml;
 	
-	@Column(name = "data_emissao")
+	@Column(name = "data_emissao", nullable = false)
 	private Date dataEmissao;
 }

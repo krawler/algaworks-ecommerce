@@ -1,13 +1,13 @@
 package com.algaworks.ecommerce.jpa;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.math.BigDecimal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.algaworks.ecommerce.model.Produto;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OperacoesComTransactionTest extends EntityManagerAbstract {
 	

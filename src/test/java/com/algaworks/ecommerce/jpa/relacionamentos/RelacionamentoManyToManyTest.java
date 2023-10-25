@@ -1,15 +1,14 @@
 package com.algaworks.ecommerce.jpa.relacionamentos;
 
-import static org.junit.Assert.assertFalse;
-
 import java.util.Arrays;
-
-import org.junit.Test;
 
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Categoria;
 import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.Produto;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RelacionamentoManyToManyTest extends EntityManagerAbstract {
 	

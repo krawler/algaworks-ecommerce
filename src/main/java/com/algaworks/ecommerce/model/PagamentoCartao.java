@@ -1,13 +1,12 @@
 package com.algaworks.ecommerce.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,9 +18,10 @@ public class PagamentoCartao {
 	@EqualsAndHashCode.Include
 	@Id
 	private Integer id;
-	
-	@Column(name = "pedido_id")
-	private Integer pedidoId;
+
+	@ManyToOne(optional = false, targetEntity = Pedido.class)
+	@JoinColumn(name = "pedido_id",	foreignKey = @ForeignKey(name = "fk_pedido"))
+	private Pedido pedido;
 	
 	private StatusPagamento status;
 	

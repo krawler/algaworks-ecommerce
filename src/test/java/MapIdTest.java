@@ -1,11 +1,13 @@
 import java.util.Date;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.NotaFiscal;
 import com.algaworks.ecommerce.model.Pedido;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class MapIdTest extends EntityManagerAbstract {
 	
@@ -27,8 +29,8 @@ public class MapIdTest extends EntityManagerAbstract {
 		manager.clear();
 		
 		NotaFiscal NotaFiscalVerify = manager.find(NotaFiscal.class, nota.getId());
-		Assert.assertNotNull(NotaFiscalVerify);
-		Assert.assertEquals(pedido.getId(), NotaFiscalVerify.getPedido().getId());
+		assertNotNull(NotaFiscalVerify);
+		assertEquals(pedido.getId(), NotaFiscalVerify.getPedido().getId());
 	}
 
 }

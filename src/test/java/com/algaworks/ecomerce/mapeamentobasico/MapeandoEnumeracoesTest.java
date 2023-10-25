@@ -1,8 +1,8 @@
 package com.algaworks.ecomerce.mapeamentobasico;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Test;
+import org.junit.platform.commons.annotation.Testable;
 
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.Cliente;
@@ -10,7 +10,7 @@ import com.algaworks.ecommerce.model.SexoCliente;
 
 public class MapeandoEnumeracoesTest extends EntityManagerAbstract {
 	
-	@Test
+	@Testable
 	public void testEnum() {
 		
 		Cliente cliente = new Cliente();

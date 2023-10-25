@@ -3,8 +3,8 @@ package com.algaworks.ecommerce.jpa.relacionamentos;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.jpa.EntityManagerAbstract;
 import com.algaworks.ecommerce.model.EnderecoEntregaPedido;
@@ -35,7 +35,7 @@ public class AnaliseMapObjectEmbededTest extends EntityManagerAbstract {
 		this.manager.getTransaction().commit();
 		
 		Pedido pedidoVerify = this.manager.find(Pedido.class, pedido.getId());
-		Assert.assertNotNull(pedidoVerify.getEnderecoEntrega());
+		assertNotNull(pedidoVerify.getEnderecoEntrega());
 	}
 
 }
