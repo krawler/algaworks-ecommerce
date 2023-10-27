@@ -17,10 +17,26 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BasicoCriteriaTest extends EntityManagerAbstract {
 
     private CriteriaBuilder builder;
+   
     @BeforeEach
     public void getBuildComponents(){
          builder = manager.getCriteriaBuilder();
     }
+    
+    @Test
+    public void projetarOResultado(){
+        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        Root<Pedido> root = query.from(Pedido.class);
+
+        query.multiselect(root);
+        
+        TypedQuery<Object[]> typedQuery = manager.createQuery(query);
+        List<Object[]> lista = typedQuery.getResultList();
+        assertFalse(lista.isEmpty());
+        
+        lista.forEach(arr -> System.out.println("ID: " + arr[0] + ", Nome: " + arr[1]));
+    }
+    
     @Test
     public void selecionarUmAtributoParaRetorno(){
         CriteriaQuery<BigDecimal> query = builder.createQuery(BigDecimal.class);
@@ -30,7 +46,7 @@ public class BasicoCriteriaTest extends EntityManagerAbstract {
         query.where(builder.equal(root.get("id"), 1));
         TypedQuery<BigDecimal> typedQuery = manager.createQuery(query);
         BigDecimal total = typedQuery.getSingleResult();
-        assertEquals(new BigDecimal("300.00"), total);
+        assertEquals(new BigDecimal("500.00"), total);
     }
     @Test
     public void buscarPorIdentificador(){

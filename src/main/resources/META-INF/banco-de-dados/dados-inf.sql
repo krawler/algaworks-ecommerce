@@ -19,3 +19,4 @@ insert into pagamento_cartao(id, pedido_id, status,  numero) values(2, 1, 1, 'ab
 insert into pagamento_boleto(id, status, pedido_id, numero) values(1, 1,  1, 'abc1123');
 
 insert into nota_fiscal(id, data_emissao, xml, id_pedido) values(1, now(), '<xml />', 2);
+insert into nota_fiscal(id, data_emissao, xml, id_pedido) values(2, now(), '<xml />', 1);
